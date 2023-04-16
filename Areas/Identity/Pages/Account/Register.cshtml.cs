@@ -17,8 +17,12 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using WebApplicationAuth.Data;
 using WebApplicationAuth.Data.Identity;
+using WebApplicationAuth.Exceptions;
+using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Areas.Identity.Pages.Account
 {
@@ -30,13 +34,15 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationIdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext _context;
 
         public RegisterModel(
             UserManager<ApplicationIdentityUser> userManager,
             IUserStore<ApplicationIdentityUser> userStore,
             SignInManager<ApplicationIdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +50,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -115,10 +122,20 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                //TODO change that dummy
-                user.EmployerId = 1;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                var employer = await _context.MDs.FirstOrDefaultAsync(e => e.Email == user.Email);
+                if (employer != null)
+                {
+                    user.EmployerId = employer.Id;
+                    user.EmployerName = employer.FIO;
+                }
+                else
+                {
+                    throw new InvalidOperationException("Email not found");
+                }
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
