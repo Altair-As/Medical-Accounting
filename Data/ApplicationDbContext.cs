@@ -15,5 +15,8 @@ namespace WebApplicationAuth.Data
         }
 
         public DbSet<Employer> MDs { get; set; }
+        public DbSet<MedicalCard> MedicalCards { get; set; }
+        public DbSet<ChronicIllness> ChronicIllnesses { get; set; }
+
     }
 }

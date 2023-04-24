@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationAuth.Data;
 
@@ -11,9 +12,10 @@ using WebApplicationAuth.Data;
 namespace WebApplicationAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424191441_ChronicIllnessesAdded")]
+    partial class ChronicIllnessesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,12 +29,12 @@ namespace WebApplicationAuth.Data.Migrations
                     b.Property<int>("IllnessesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MedicalCardsId")
+                    b.Property<int>("PatientsId")
                         .HasColumnType("int");
 
-                    b.HasKey("IllnessesId", "MedicalCardsId");
+                    b.HasKey("IllnessesId", "PatientsId");
 
-                    b.HasIndex("MedicalCardsId");
+                    b.HasIndex("PatientsId");
 
                     b.ToTable("ChronicIllnessMedicalCard");
                 });
@@ -356,7 +358,7 @@ namespace WebApplicationAuth.Data.Migrations
 
                     b.HasOne("WebApplicationAuth.Models.MedicalCard", null)
                         .WithMany()
-                        .HasForeignKey("MedicalCardsId")
+                        .HasForeignKey("PatientsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

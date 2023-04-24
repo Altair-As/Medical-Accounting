@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationAuth.Data;
 
@@ -11,9 +12,10 @@ using WebApplicationAuth.Data;
 namespace WebApplicationAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424190254_MedicalCardAddedAgain")]
+    partial class MedicalCardAddedAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace WebApplicationAuth.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ChronicIllnessMedicalCard", b =>
-                {
-                    b.Property<int>("IllnessesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MedicalCardsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("IllnessesId", "MedicalCardsId");
-
-                    b.HasIndex("MedicalCardsId");
-
-                    b.ToTable("ChronicIllnessMedicalCard");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -249,28 +236,6 @@ namespace WebApplicationAuth.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplicationAuth.Models.ChronicIllness", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ChronicIllnesses");
-                });
-
             modelBuilder.Entity("WebApplicationAuth.Models.Employer", b =>
                 {
                     b.Property<int>("Id")
@@ -344,21 +309,6 @@ namespace WebApplicationAuth.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MedicalCards");
-                });
-
-            modelBuilder.Entity("ChronicIllnessMedicalCard", b =>
-                {
-                    b.HasOne("WebApplicationAuth.Models.ChronicIllness", null)
-                        .WithMany()
-                        .HasForeignKey("IllnessesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplicationAuth.Models.MedicalCard", null)
-                        .WithMany()
-                        .HasForeignKey("MedicalCardsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
