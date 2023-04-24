@@ -1,0 +1,39 @@
+﻿@page
+@model WebApplicationAuth.Pages.MedicalCardsModel
+@{
+}
+
+<div class="container text-center mt-3">
+    <h1 class="display-4 mb-4">Patients</h1>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Insurance</th>
+                <th>SNILS</th>
+                <th>Passport</th>
+                <th>Date of birth</th>
+                <th>Adress</th>
+                <th>Height(sm)</th>
+                <th>Weight(kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var c in Model.cards)
+            {
+                <tr>
+                    <td>@c.Id</td>
+                    <td>@c.FIO</td>
+                    <td>@c.Insurance</td>
+                    <td>@c.SNILS</td>
+                    <td>@c.Passport</td>
+                    <td>@c.DateOfBirth</td>
+                    <td>@c.Adress</td>
+                    <td>@c.Height</td>
+                    <td>@c.Weight</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
