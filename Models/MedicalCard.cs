@@ -23,6 +23,7 @@ namespace WebApplicationAuth.Models
         public float Weight { get; set; }
         public float Height { get; set; }
         public List<ChronicIllness> Illnesses { get; set; }
+        public List<Record> Records { get; set; }
 
     }
 }

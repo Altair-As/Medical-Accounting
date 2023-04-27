@@ -13,5 +13,6 @@ namespace WebApplicationAuth.Models
         public string? Phone { get; set; }
         public string Email { get; set; } = "test@gmail.com";
         public ApplicationIdentityUser? ApplicationIdentityUser { get; set; }
+        public List<Record> Records { get; set; }
     }
 }

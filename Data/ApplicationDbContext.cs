@@ -8,8 +8,7 @@ namespace WebApplicationAuth.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser, IdentityRole, string>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
         }
@@ -17,6 +16,7 @@ namespace WebApplicationAuth.Data
         public DbSet<Employer> MDs { get; set; }
         public DbSet<MedicalCard> MedicalCards { get; set; }
         public DbSet<ChronicIllness> ChronicIllnesses { get; set; }
+        public DbSet<Record> Records { get; set; }
 
     }
 }
