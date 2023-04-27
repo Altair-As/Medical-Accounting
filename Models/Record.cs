@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.CodeAnalysis;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
 
@@ -20,8 +21,10 @@ namespace WebApplicationAuth.Models
         public string Result { get; set; } = String.Empty;
         public string Complaints { get; set; } = String.Empty;
         public string Symptoms { get; set;} = String.Empty;
+        public string Diagnosis { get; set; } = String.Empty;
         public MedicalCard MedicalCardNumber { get; set; }
         public Employer MD { get; set; }
+        public List<Medicine> Medications { get; set; }
 
     }
 }

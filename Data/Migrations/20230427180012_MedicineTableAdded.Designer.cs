@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationAuth.Data;
 
@@ -11,9 +12,10 @@ using WebApplicationAuth.Data;
 namespace WebApplicationAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230427180012_MedicineTableAdded")]
+    partial class MedicineTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,21 +37,6 @@ namespace WebApplicationAuth.Data.Migrations
                     b.HasIndex("MedicalCardsId");
 
                     b.ToTable("ChronicIllnessMedicalCard");
-                });
-
-            modelBuilder.Entity("MedicineRecord", b =>
-                {
-                    b.Property<int>("MedicationsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecordsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MedicationsId", "RecordsId");
-
-                    b.HasIndex("RecordsId");
-
-                    b.ToTable("MedicineRecord");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -361,23 +348,6 @@ namespace WebApplicationAuth.Data.Migrations
                     b.ToTable("MedicalCards");
                 });
 
-            modelBuilder.Entity("WebApplicationAuth.Models.Medicine", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Medicine");
-                });
-
             modelBuilder.Entity("WebApplicationAuth.Models.Record", b =>
                 {
                     b.Property<int>("Id")
@@ -444,21 +414,6 @@ namespace WebApplicationAuth.Data.Migrations
                     b.HasOne("WebApplicationAuth.Models.MedicalCard", null)
                         .WithMany()
                         .HasForeignKey("MedicalCardsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MedicineRecord", b =>
-                {
-                    b.HasOne("WebApplicationAuth.Models.Medicine", null)
-                        .WithMany()
-                        .HasForeignKey("MedicationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebApplicationAuth.Models.Record", null)
-                        .WithMany()
-                        .HasForeignKey("RecordsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
