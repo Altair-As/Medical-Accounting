@@ -11,7 +11,7 @@ namespace WebApplicationAuth.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(TypeName = "Date")]
-        public DateTime AppointmentDade { get; set; }
+        public DateTime AppointmentDate { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(TypeName = "Time")]
@@ -22,7 +22,7 @@ namespace WebApplicationAuth.Models
         public string Complaints { get; set; } = String.Empty;
         public string Symptoms { get; set;} = String.Empty;
         public string Diagnosis { get; set; } = String.Empty;
-        public MedicalCard MedicalCardNumber { get; set; }
+        public MedicalCard MedicalCard { get; set; }
         public Employer MD { get; set; }
         public List<Medicine> Medications { get; set; }
 

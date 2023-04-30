@@ -1,0 +1,82 @@
+﻿@page
+@model WebApplicationAuth.Pages.CardViewModel
+@{
+}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-4">
+            <img src="~/images/@Model.medicalCard.ImagePath" class="img-fluid border border-2 border-dark rounded-3 nopoint" alt="" />
+        </div>
+
+        <div class="col-6">
+
+            <div class="text-center border border-2 border-dark rounded-3 pt-3 pb-2 mb-3 bg-light">
+                <h4>@Model.medicalCard.FIO</h4>
+            </div>
+            
+            <div class="border border-2 border-dark rounded-3 pt-3 p-3 pb-1 mb-3">
+
+                <p><strong>Date of birth :</strong> @Model.medicalCard.DateOfBirth.ToString("dd MMMM yyyy") (@Model.age years old)</p>
+                <p><strong>Insuranse number :</strong> @Model.medicalCard.Insurance</p>
+                <p><strong>Insuranse account :</strong> @Model.medicalCard.SNILS</p>
+                <p><strong>Passport number :</strong> @Model.medicalCard.Passport</p>
+                <p><strong>Height (last measurement):</strong> @Model.medicalCard.Height sm</p>
+                <p><strong>Weight (last measurement):</strong> @Model.medicalCard.Weight kg</p>
+                <p><strong>Current address of residence :</strong> <br /> @Model.medicalCard.Address</p>
+
+            </div>
+
+            @if (Model.patientsIllneses.Any())
+            {
+                <ul>
+                    @foreach (var i in Model.patientsIllneses)
+                    {
+                        <li>@i.Title</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No chronic illneses found</p>
+            }
+
+        </div>
+
+    </div>
+
+    @*<img src="~/images/@Model.medicalCard.ImagePath" alt="" />
+    <h4>@Model.medicalCard.FIO</h4>
+    <p>@Model.medicalCard.DateOfBirth</p>
+    <p>@Model.medicalCard.Insurance</p>
+    <p>@Model.medicalCard.Passport</p>
+    <p>@Model.medicalCard.Adress</p>
+    <p>@Model.medicalCard.Height santimetrs</p>
+    <p>@Model.medicalCard.Weight kilograms</p>
+    @if (Model.patientsIllneses.Any())
+    {
+        <ul>
+            @foreach(var i in Model.patientsIllneses)
+            {
+                <li>@i.Title</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No chronic illneses found</p>
+    }
+    
+    <div class="row">
+                    <div class="col-md-auto">
+                        <strong>Address of residence :</strong>
+                    </div>
+                    <div class="col text-center p-2 m-2 mt-0 mb-1 border rounded-3">
+                        @Model.medicalCard.Adress
+                    </div>
+                </div>
+    *@
+
+</div>

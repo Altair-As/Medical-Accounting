@@ -12,16 +12,17 @@ namespace WebApplicationAuth.Models
         [Required]
         [MaxLength(16)]
         public string Insurance { get; set; } = string.Empty;
-        [MaxLength(11)]
+        [MaxLength(14)]
         public string SNILS { get; set; } = string.Empty;
-        [MaxLength(10)]
+        [MaxLength(12)]
         public string Passport { get; set; } = string.Empty;
         [Required]
         [Column(TypeName = "Date")]
         public DateTime DateOfBirth { get; set; }
-        public string Adress { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
         public float Weight { get; set; }
         public float Height { get; set; }
+        public string? ImagePath { get; set; } = "~/images/notfound.jpg";
         public List<ChronicIllness> Illnesses { get; set; }
         public List<Record> Records { get; set; }
 

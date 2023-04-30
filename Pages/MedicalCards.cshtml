@@ -17,19 +17,19 @@
                 <th>Adress</th>
                 <th>Height(sm)</th>
                 <th>Weight(kg)</th>
-            </tr>
+            </tr> 
         </thead>
         <tbody>
             @foreach(var c in Model.cards)
             {
-                <tr>
+                <tr style="vertical-align:middle">
                     <td>@c.Id</td>
-                    <td>@c.FIO</td>
+                    <td><a asp-area="" asp-page="/CardView" asp-route-id="@c.Id">@c.FIO</a></td>
                     <td>@c.Insurance</td>
                     <td>@c.SNILS</td>
                     <td>@c.Passport</td>
-                    <td>@c.DateOfBirth</td>
-                    <td>@c.Adress</td>
+                    <td>@c.DateOfBirth.ToString("dd-MM-yyyy")</td>
+                    <td style="max-width:300px">@c.Address</td>
                     <td>@c.Height</td>
                     <td>@c.Weight</td>
                 </tr>

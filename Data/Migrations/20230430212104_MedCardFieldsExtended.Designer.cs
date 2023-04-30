@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationAuth.Data;
 
@@ -11,9 +12,10 @@ using WebApplicationAuth.Data;
 namespace WebApplicationAuth.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230430212104_MedCardFieldsExtended")]
+    partial class MedCardFieldsExtended
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,7 +326,7 @@ namespace WebApplicationAuth.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Adress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -389,7 +391,7 @@ namespace WebApplicationAuth.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("AppointmentDate")
+                    b.Property<DateTime>("AppointmentDade")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date");
 
@@ -416,7 +418,7 @@ namespace WebApplicationAuth.Data.Migrations
                     b.Property<int>("MDId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MedicalCardId")
+                    b.Property<int>("MedicalCardNumberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Result")
@@ -431,7 +433,7 @@ namespace WebApplicationAuth.Data.Migrations
 
                     b.HasIndex("MDId");
 
-                    b.HasIndex("MedicalCardId");
+                    b.HasIndex("MedicalCardNumberId");
 
                     b.ToTable("Records");
                 });
@@ -536,15 +538,15 @@ namespace WebApplicationAuth.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplicationAuth.Models.MedicalCard", "MedicalCard")
+                    b.HasOne("WebApplicationAuth.Models.MedicalCard", "MedicalCardNumber")
                         .WithMany("Records")
-                        .HasForeignKey("MedicalCardId")
+                        .HasForeignKey("MedicalCardNumberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("MD");
 
-                    b.Navigation("MedicalCard");
+                    b.Navigation("MedicalCardNumber");
                 });
 
             modelBuilder.Entity("WebApplicationAuth.Models.Employer", b =>
