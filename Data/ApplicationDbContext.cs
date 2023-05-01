@@ -13,10 +13,11 @@ namespace WebApplicationAuth.Data
 
         }
 
-        public DbSet<Employer> MDs { get; set; }
+        public DbSet<Employer> Employers { get; set; }
         public DbSet<MedicalCard> MedicalCards { get; set; }
         public DbSet<ChronicIllness> ChronicIllnesses { get; set; }
         public DbSet<Record> Records { get; set; }
+        public DbSet<Medicine> Medicine { get; set; }
 
     }
 }

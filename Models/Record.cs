@@ -23,7 +23,8 @@ namespace WebApplicationAuth.Models
         public string Symptoms { get; set;} = String.Empty;
         public string Diagnosis { get; set; } = String.Empty;
         public MedicalCard MedicalCard { get; set; }
-        public Employer MD { get; set; }
+        public Employer Employer { get; set; }
+        public int EmployerId { get; set; }
         public List<Medicine> Medications { get; set; }
 
     }

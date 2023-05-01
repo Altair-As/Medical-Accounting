@@ -95,7 +95,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
-                var employer = await _context.MDs.FirstOrDefaultAsync(e => e.Email == user.Email);
+                var employer = await _context.Employers.FirstOrDefaultAsync(e => e.Email == user.Email);
                 if (employer != null)
                 {
                     user.EmployerId = employer.Id;

@@ -8,6 +8,7 @@ namespace WebApplicationAuth.Pages
     public class CardViewModel : PageModel
     {
         public int age;
+        public List<Record>? patientsRecords;
         public List<ChronicIllness>? patientsIllneses;
         private readonly ApplicationDbContext _context;
 
@@ -22,11 +23,29 @@ namespace WebApplicationAuth.Pages
         public void OnGet(int Id)
         {
             medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
+
             medicalCard.ImagePath = medicalCard.Insurance + ".jpg";
             patientsIllneses = _context.Entry(medicalCard)
                 .Collection(p => p.Illnesses)
                 .Query()
                 .ToList();
+
+            patientsRecords = _context.Entry(medicalCard)
+                .Collection(p => p.Records)
+                .Query()
+                .ToList();
+
+            patientsRecords.ForEach(p =>
+            {
+                p.Employer = _context.Employers.FirstOrDefault(c => c.Id == p.EmployerId);
+                var medicines = _context.Records
+                    .Where(r => r.Id == p.Id)
+                    .SelectMany(r => r.Medications)
+                    .ToList();
+                p.Medications = medicines;
+            });
+
+
 
             DateTime now = DateTime.Now;
             age = now.Year - medicalCard.DateOfBirth.Year;

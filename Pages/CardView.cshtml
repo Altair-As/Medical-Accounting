@@ -7,6 +7,16 @@
 
     <div class="row justify-content-center">
 
+        <div class="text-center border border-2 rounded-3 border-dark bg-dark text-light mb-3 p-3 pb-2" style="width:1056px">
+
+            <h2><strong>MEDICAL CARD № @Model.medicalCard.Id</strong></h2>
+
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center mb-3">
+
         <div class="col-4">
             <img src="~/images/@Model.medicalCard.ImagePath" class="img-fluid border border-2 border-dark rounded-3 nopoint" alt="" />
         </div>
@@ -29,23 +39,117 @@
 
             </div>
 
-            @if (Model.patientsIllneses.Any())
-            {
-                <ul>
-                    @foreach (var i in Model.patientsIllneses)
-                    {
-                        <li>@i.Title</li>
-                    }
-                </ul>
-            }
-            else
-            {
-                <p>No chronic illneses found</p>
-            }
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="text-center border border-2 rounded-3 border-dark text-light mb-3 p-3 pb-2" style="width:1056px; background-color:brown">
+
+                @if (Model.patientsIllneses.Any())
+                {
+                    <h2><strong>Warning</strong></h2>
+                    <p>
+
+                        Patient has the folowing chronic illneses:
+                        @foreach(var i in Model.patientsIllneses)
+                        {
+                            <strong>@i.Title (@i.Code)</strong>
+                            if(i != Model.patientsIllneses.Last())
+                            {
+                                <strong>, </strong>
+                            }
+                        }
+
+                    </p>
+                }
+                else
+                {
+                    <h2>No chronic illneses</h2>
+                }
+
+            </div>
 
         </div>
 
+        <div class="row border border-1 border-dark rounded-top text-center mt-5">
+
+            <h3 class="p-3 pb-2">Papient's appointments</h3>
+
+        </div>
+
+        @if(Model.patientsRecords.Any())
+        {
+            <table class="table table-striped table-bordered text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>Document</th>
+                        <th>Complaints</th>
+                        <th>Symptoms</th>
+                        <th>Diagnosis</th>
+                        <th>Doctor</th>
+                        <th>Prescription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model.patientsRecords)
+                    {
+                        <tr style="vertical-align:middle">
+                            <td>@c.Id</td>
+                            <td>@c.AppointmentDate.ToString("dd-MM-yyyy")</td>
+                            <td>@c.AppointmentTime.ToString("c")</td>
+                            <td>@c.AppointmentType</td>
+                            <td>@c.Document</td>
+                            <td style="max-width:200px">@c.Complaints</td>
+                            <td style="max-width:200px">@c.Symptoms</td>
+                            <td style="max-width:150px">@c.Diagnosis</td>
+                            <td>@c.Employer.FIO</td>
+                            <td style="vertical-align:middle;">
+
+                                <p class="m-1">
+
+                                    Medicine list
+                                    <a class="collapselink" data-bs-toggle="collapse" href="#collapseScript" role="button" aria-expanded="false" aria-controls="collapseScript">+</a>
+
+                                </p>
+
+                                <div class="collapse mb-0" id="collapseScript">
+
+                                    <ul>
+
+                                        @foreach (var r in Model.patientsRecords)
+                                        {
+                                            @foreach (var m in r.Medications)
+                                            {
+                                                <li>@m.Name</li>
+                                            }
+                                        }
+
+                                    </ul>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="row border border-1 border-dark rounded-bottom text-center">
+
+                <h3 class="p-3 pb-2">There is no records</h3>
+
+            </div>
+        }
+
     </div>
+
+    
 
     @*<img src="~/images/@Model.medicalCard.ImagePath" alt="" />
     <h4>@Model.medicalCard.FIO</h4>
@@ -68,15 +172,6 @@
     {
         <p>No chronic illneses found</p>
     }
-    
-    <div class="row">
-                    <div class="col-md-auto">
-                        <strong>Address of residence :</strong>
-                    </div>
-                    <div class="col text-center p-2 m-2 mt-0 mb-1 border rounded-3">
-                        @Model.medicalCard.Adress
-                    </div>
-                </div>
     *@
 
 </div>

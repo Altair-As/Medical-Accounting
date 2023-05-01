@@ -30,3 +30,9 @@ body {
 .nopoint {
     pointer-events:none;
 }
+
+.collapselink:hover,
+.collapselink:active,
+.collapselink {
+    text-decoration: none;
+}
