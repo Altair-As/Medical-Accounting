@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplicationAuth.Data;
@@ -5,6 +6,8 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Pages
 {
+
+    [Authorize]
     public class MedicalCardsModel : PageModel
     {
 
@@ -22,6 +25,11 @@ namespace WebApplicationAuth.Pages
         public IActionResult OnPost()
         {
             string searchText = SearchText;
+            if (searchText == null)
+            {
+                OnGet();
+                return Page();
+            }
             cards = _context.MedicalCards
                 .Where(m => m.FIO.Contains(searchText))
                 .ToList();

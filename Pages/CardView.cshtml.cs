@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplicationAuth.Data;
@@ -5,6 +6,7 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Pages
 {
+    [Authorize]
     public class CardViewModel : PageModel
     {
         public int age;

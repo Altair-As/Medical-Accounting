@@ -42,5 +42,10 @@ body {
     height: 45px;
     outline: none;
     font-size: 20px;
-    margin-left: 8px
+    margin-left: 8px;
+}
+
+.addbtn {
+    height: 47px;
+    font-size: 20px;
 }

@@ -4,23 +4,30 @@
 }
 
 <div class="container">
-    <div class="row mb-2">
 
-        <div class="col-auto me-auto align-self-center">
+    <div class="row text-center">
 
-            <h1 class="display-4">Patients</h1>
+        <h1 class="display-4">Patients list</h1>
+
+    </div>
+
+    <div class="row mb-4 mt-2 justify-content-center">
+
+        <div class="col-auto align-self-center"> 
+
+            <a class="btn btn-primary pt-2 border border-1 border-dark addbtn">Add new patient</a>
 
         </div>
 
         <div class="col-auto align-self-center">
 
-            <form class="row border border-1 border-dark rounded-3" style="margin-right:0px" method="post">
+            <form class="row border border-1 border-dark rounded-3" method="post">
 
                 <div class="col-auto align-self-center p-0">
-                    <input name="searchText" type="text" value="" class="border-0 searchinput" placeholder="Search patient" />
+                    <input name="searchText" type="text" autocomplete="off" value="" class="border-0 searchinput" placeholder="Search patient" />
                 </div>
-                <button type="submit" class="col border-0 rounded-end">
-                    <img class="m-1" style="height:2rem; width:auto" src="~/icons/search-svgrepo-com.svg" alt="" />
+                <button type="submit" class="col border-0 rounded-end p-0">
+                    <img class="m-1" style="height:2rem; width:2.5rem" src="~/icons/search-svgrepo-com.svg" alt="" />
                 </button>
 
             </form>
@@ -29,23 +36,25 @@
 
     </div>
 
-    @if (Model.cards.Any())
-    {
-        <table class="table table-striped table-bordered text-center">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Insurance</th>
-                    <th>SNILS</th>
-                    <th>Passport</th>
-                    <th>Date of birth</th>
-                    <th>Adress</th>
-                    <th>Height(sm)</th>
-                    <th>Weight(kg)</th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Insurance</th>
+                <th>SNILS</th>
+                <th>Passport</th>
+                <th>Date of birth</th>
+                <th>Adress</th>
+                <th>Height(sm)</th>
+                <th>Weight(kg)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @if (Model.cards.Any())
+            {
                 @foreach (var c in Model.cards)
                 {
                     <tr style="vertical-align:middle">
@@ -60,16 +69,28 @@
                         <td>@c.Weight</td>
                     </tr>
                 }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <div class="row">
+                
+                @if (Model.SearchText != null)
+                {
+                    <tr style="vertical-align:middle">
+                        <td colspan="9">
+                            Total number of patients found: @Model.cards.Count()
+                        </td>
+                    </tr>
+                }
 
-            <h2 class="m-3">No patients found</h2>
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td colspan="9">
+                        <h2 class="m-2">No patients found</h2>
+                    </td>
+                </tr>
+            }
 
-        </div>
-    }
+        </tbody>
 
+    </table>
+    
 </div>
