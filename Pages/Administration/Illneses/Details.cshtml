@@ -1,0 +1,32 @@
+﻿@page
+@model WebApplicationAuth.Pages.Administration.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Administration/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ChronicIllness</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ChronicIllness.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ChronicIllness.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ChronicIllness.Code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ChronicIllness.Code)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ChronicIllness?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

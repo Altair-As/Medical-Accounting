@@ -1,0 +1,97 @@
+﻿@page
+@model WebApplicationAuth.Pages.Administration.Patients.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Administration/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+
+    <div class="row text-center">
+
+        <h1 class="display-4">Patients list</h1>
+        
+    </div>
+
+    <div class="row justify-content-center mb-4 mt-2" >
+
+        <div class="col-auto align-self-center">
+
+            <a asp-page="Create" class="btn btn-primary pt-2 border border-1 border-dark addbtn">Add new patient</a>
+
+        </div>
+        
+    </div>
+
+</div>
+
+<table class="table table-striped table-bordered text-center">
+    <thead class="table-dark">
+        <tr style="vertical-align: middle">
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].FIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].Insurance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].SNILS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].Passport)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MedicalCard[0].Height)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.MedicalCard) 
+        {
+            <tr style="vertical-align: middle">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Insurance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SNILS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Passport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td style="min-width:180px">
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
