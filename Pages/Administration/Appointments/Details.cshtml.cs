@@ -37,6 +37,13 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
             {
                 Record = record;
             }
+
+            if (_context.Records != null)
+            {
+                Record.Employer = _context.Employers.FirstOrDefault(e => e.Id == Record.EmployerId);
+                Record.MedicalCard = _context.MedicalCards.FirstOrDefault(e => e.Id == Record.MedicalCardId);
+            }
+
             return Page();
         }
     }

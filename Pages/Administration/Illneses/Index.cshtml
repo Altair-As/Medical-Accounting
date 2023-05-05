@@ -6,13 +6,30 @@
     Layout = "~/Pages/Administration/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container">
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+
+    <div class="row text-center">
+
+        <h1 class="display-4">Illneses list</h1>
+
+    </div>
+
+    <div class="row justify-content-center mb-4 mt-2">
+
+        <div class="col-auto align-self-center">
+
+            <a asp-page="Create" class="btn btn-primary pt-2 border border-1 border-dark addbtn">Add new illnes</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<table class="table table-striped table-bordered text-center" style="vertical-align:middle">
+    <thead class="table-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ChronicIllness[0].Title)
@@ -20,7 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ChronicIllness[0].Code)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>

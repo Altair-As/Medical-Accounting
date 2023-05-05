@@ -36,7 +36,9 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
                 return NotFound();
             }
             Record = record;
+
            ViewData["EmployerId"] = new SelectList(_context.Employers, "Id", "Id");
+           ViewData["MedicalCardId"] = new SelectList(_context.MedicalCards, "Id", "Id");
             return Page();
         }
 

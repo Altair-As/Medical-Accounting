@@ -26,7 +26,9 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
             if (_context.Records != null)
             {
                 Record = await _context.Records
-                .Include(e => e.Employer).ToListAsync();
+                    .Include(e => e.Employer).ToListAsync();
+                Record = await _context.Records
+                    .Include(e => e.MedicalCard).ToListAsync();
             }
         }
     }
