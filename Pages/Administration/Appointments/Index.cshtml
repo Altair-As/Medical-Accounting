@@ -75,7 +75,7 @@
                 @item.AppointmentDate.ToString("dd.MM.yyyy")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppointmentTime)
+                @item.AppointmentTime.ToString("h\\:mm")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AppointmentType)

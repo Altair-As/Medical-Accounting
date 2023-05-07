@@ -23,8 +23,8 @@ namespace WebApplicationAuth.Models
         public float Weight { get; set; }
         public float Height { get; set; }
         public string? ImagePath { get; set; } = "~/images/notfound.jpg";
-        public List<ChronicIllness> Illnesses { get; set; }
-        public List<Record> Records { get; set; }
+        public List<ChronicIllness>? Illnesses { get; set; }
+        public List<Record>? Records{ get; set; }
 
     }
 }

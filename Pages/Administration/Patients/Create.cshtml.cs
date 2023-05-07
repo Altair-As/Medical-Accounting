@@ -25,13 +25,13 @@ namespace WebApplicationAuth.Pages.Administration.Patients
         }
 
         [BindProperty]
-        public MedicalCard MedicalCard { get; set; } = default!;
+        public MedicalCard MedicalCard { get; set; }
         
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.MedicalCards == null || MedicalCard == null)
+
+            if (!ModelState.IsValid || _context.MedicalCards == null || MedicalCard == null)
             {
                 return Page();
             }
