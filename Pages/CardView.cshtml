@@ -41,13 +41,70 @@
 
         </div>
 
+
         <div class="row justify-content-center">
 
             <div class="text-center border border-2 rounded-3 border-dark text-light mb-3 p-3 pb-2" style="width:1056px; background-color:brown">
 
                 @if (Model.patientsIllneses.Any())
                 {
-                    <h2><strong>Warning</strong></h2>
+                    
+                    <div class="row justify-content-center align-items-center">
+
+                        <div class="col-auto p-0">
+
+                            <h2><strong>Warning</strong></h2>
+
+                        </div>
+
+                        <div class="col-auto">
+
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#addIllness" class="btn btn-secondary" style="width:30px; height:30px; display:flex; justify-content:center; align-items:center">
+                                <img src="~/icons/plus-white.svg" alt="" class="" style="height:25px" />
+                            </button>
+
+                            <div class="modal fade" id="addIllness" tabindex="-1" aria-labelledby="addIllnessLabel" aria-hidden="true">
+
+                                <div class="modal-dialog modal-dialog-centered">
+
+                                    <div class="modal-content">
+
+                                        <div class="modal-header justify-content-center">
+
+                                            <h3 class="text-dark">Add chronic illness</h3>
+
+                                        </div>
+
+                                        <form method="post" asp-action="AddIllness"> 
+
+                                            <div class="modal-body">
+
+                                                <div class="form-group mb-2">
+                                                    <label asp-for="newIllness" class="control-label text-dark mb-1" style="font-size:25px">Illness</label>
+                                                    <select asp-for="newIllness" class="form-control" asp-items="ViewBag.Illnesses"></select>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-footer justify-content-center">
+
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Add</button>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                     <p>
 
                         Patient has the folowing chronic illneses:
@@ -71,9 +128,21 @@
 
         </div>
 
-        <div class="row border border-1 border-dark rounded-top text-center mt-5">
+        <div class="row border border-1 border-dark rounded-top text-center justify-content-center align-items-center mt-5">
 
-            <h3 class="p-3 pb-2">Patient's appointments</h3>
+            <div class="col-auto">
+
+                <h3 class="p-2 pb-2 pt-3 col-auto">Patient's appointments</h3>
+
+            </div>
+
+            <div class="col-auto p-0">
+
+                <button class="btn btn-primary m-0 mt-1" style="width:40px; height:40px; display:flex; justify-content:center; align-items:center">
+                    <img src="~/icons/plus-white.svg" alt="" class="" style="height:35px" />
+                </button>
+
+            </div>
 
         </div>
 
@@ -98,7 +167,125 @@
                     @foreach (var c in Model.patientsRecords)
                     {
                         <tr style="vertical-align:middle">
-                            <td>@c.Id</td>
+                            <td>
+
+                                <button class="border-0" type="button" data-bs-toggle="modal" data-bs-target="#RecordDetialsModal">@c.Id</button>
+
+                                <div class="modal fade" id="RecordDetialsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                                    <div class="modal-dialog modal-dialog-centered">
+
+                                        <div class="modal-content">
+
+                                            <div class="modal-header justify-content-center">
+
+                                                <h3>Record details</h3>
+
+                                            </div>
+
+                                            <div class="modal-body pb-0">
+
+                                                <dl class="row mb-0" style="margin-left:10px;" >
+
+                                                    <dt class="col-sm-2">
+                                                        Id:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Id
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Date:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.AppointmentDate.ToString("dd MMMM yyyy")
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Time:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.AppointmentTime.ToString("h\\:mm")
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Type:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.AppointmentType
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Document:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Document
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Complaints:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Complaints
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Symptoms:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Symptoms
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Diagnosis:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Diagnosis
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Doctor:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+                                                        @c.Employer.FIO
+                                                    </dd>
+
+                                                    <dt class="col-sm-2">
+                                                        Medicine:
+                                                    </dt>
+                                                    <dd class="col-sm-10">
+
+                                                        <p>
+                                                            @foreach (var m in c.Medications)
+                                                            {
+                                                                @m.Name;
+                                                                if (m != c.Medications.Last())
+                                                                {
+                                                                    <i>|</i>
+                                                                }
+                                                            }
+                                                        </p>
+
+                                                    </dd>
+                                                    
+
+                                                </dl>
+
+                                            </div>
+
+                                            <div class="modal-footer justify-content-center">
+
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
                             <td>@c.AppointmentDate.ToString("dd-MM-yyyy")</td>
                             <td>@c.AppointmentTime.ToString("c")</td>
                             <td>@c.AppointmentType</td>
