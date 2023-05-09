@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using WebApplicationAuth.Data;
+using WebApplicationAuth.Data.DTO;
+using WebApplicationAuth.Data.Migrations;
 using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Pages
@@ -15,17 +17,17 @@ namespace WebApplicationAuth.Pages
         public List<Record>? patientsRecords;
         public List<ChronicIllness>? patientsIllneses;
         private readonly ApplicationDbContext _context;
-        public string newIllness;
+        public MedicalCard medicalCard;
 
-        [BindProperty]
-        public MedicalCard medicalCard { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int Id {  get; set; }
 
         public CardViewModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public void OnGet(int Id)
+        public void OnGet()
         {
             medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
 
@@ -61,13 +63,28 @@ namespace WebApplicationAuth.Pages
             }
         }
 
-        public IActionResult AddIllness()
+        public IActionResult OnPostAddIllness(string illness)
         {
-            if (newIllness != null)
+            
+            if (illness != null)
             {
-                ChronicIllness illness = _context.ChronicIllnesses.Where(c => c.Title == newIllness).FirstOrDefault();
-                //TODO Find out how to add rows to the linking table and add illness.Id and medicalCard.Id to it
+                ChronicIllness newIllness = _context.ChronicIllnesses.Where(c => c.Title == illness).FirstOrDefault();
+
+                medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
+
+                patientsIllneses = _context.Entry(medicalCard)
+                    .Collection(p => p.Illnesses)
+                    .Query()
+                    .ToList();
+
+                if (newIllness != null)
+                {
+                    medicalCard.Illnesses.Add(newIllness);
+                    _context.SaveChanges();
+                }
+
             }
+            OnGet();
             return Page();
         }
 

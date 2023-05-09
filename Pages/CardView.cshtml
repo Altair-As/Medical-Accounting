@@ -75,13 +75,15 @@
 
                                         </div>
 
-                                        <form method="post" asp-action="AddIllness"> 
+                                        <form method="post" asp-page-handler="AddIllness"> 
 
                                             <div class="modal-body">
 
+                                                <input asp-for="Id" type="hidden" value="@Model.medicalCard.Id" />
+
                                                 <div class="form-group mb-2">
-                                                    <label asp-for="newIllness" class="control-label text-dark mb-1" style="font-size:25px">Illness</label>
-                                                    <select asp-for="newIllness" class="form-control" asp-items="ViewBag.Illnesses"></select>
+                                                    <label for="illness" class="control-label text-dark mb-1" style="font-size:25px">Illness</label>
+                                                    <select name="illness" id="illness" class="form-control" asp-items="ViewBag.Illnesses"></select>
                                                 </div>
 
                                             </div>
