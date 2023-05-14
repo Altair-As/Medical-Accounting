@@ -5,26 +5,60 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4 mb-4">Welcome</h1>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nemo deleniti ut? Facere porro similique dolores, ullam sit, veritatis consequuntur quos, voluptatibus qui a nesciunt odio voluptatum minus? Voluptatem, repellendus?
-        Itaque, delectus, repellendus autem deleniti nisi eum aliquid molestias asperiores unde similique quam nostrum labore dolorum repudiandae, dolorem vel non officiis mollitia? Doloribus cum voluptatum accusamus totam. Quos, modi labore!
-        Architecto vel perferendis sequi deserunt expedita nam possimus esse et eaque. Alias at neque veniam, dignissimos architecto nam ducimus, necessitatibus magni recusandae placeat quod nostrum sed nobis et sit! Mollitia?
-        Optio eius quisquam minus cupiditate hic, eos dignissimos ipsa vero atque? Quia, illo! Praesentium odio vel dicta voluptatem eveniet iure adipisci beatae, magnam, voluptatibus veritatis porro tenetur asperiores accusamus officia!
-        Atque optio molestiae officia at laboriosam vero. Aut, doloremque fugit laborum adipisci optio error architecto fugiat? Maxime adipisci minima voluptatem repellat, porro rem, obcaecati quidem vitae deleniti veritatis quas fugit.
-        Non, magni odit in tempore sapiente nesciunt voluptatibus quam libero obcaecati quaerat facere voluptas earum laboriosam autem suscipit. Illo ratione quidem qui, vitae exercitationem harum dolorum quaerat. Fugit, ea repudiandae.
-        Dolor, minus facere. Voluptas, tenetur assumenda repellendus unde dicta, nam aliquid recusandae suscipit quaerat doloremque magnam! Nemo, doloremque, sequi minus eius magni provident, quisquam non iure porro hic quam inventore.
-        Fugiat consequatur, deleniti accusantium voluptates doloribus aliquid autem cumque sint, laudantium quam repellat inventore dignissimos ut eius iste, consequuntur labore ea perferendis cupiditate pariatur dolore perspiciatis quod incidunt? Hic, assumenda.
-        Ullam et nam quaerat est asperiores saepe? Quasi maxime animi earum numquam modi odio ducimus illo hic pariatur eius, fugit asperiores soluta et natus. Explicabo optio dolor reprehenderit expedita facere.
-        Odit, suscipit placeat fugiat nisi quos quae laboriosam molestias, est debitis corrupti dicta? Cumque repellat, velit eligendi ratione iure odit excepturi itaque, tempora voluptatum tempore enim accusamus. Delectus, voluptatem consectetur?
-        Consequatur, tenetur, modi ullam placeat ipsum quidem tempore id rem pariatur voluptate excepturi magni velit dolor provident quos accusantium delectus nostrum quia iusto veniam minus, reprehenderit vero consequuntur. Impedit, adipisci.
-        Officiis nostrum velit sit dignissimos? Cum deserunt ducimus impedit adipisci. Debitis ut quo corporis vel non doloribus soluta vero perferendis necessitatibus quod. Itaque eos repellendus perferendis eveniet ipsam obcaecati sapiente.
-        Nobis perferendis possimus culpa reiciendis optio quos quisquam neque? Architecto autem earum at accusamus cum ea hic quisquam maxime dolorum iure eligendi, voluptates consectetur, cupiditate itaque culpa laborum, modi rem?
-        Cupiditate, accusantium nulla dolorum aliquam eaque debitis nobis, autem non dignissimos voluptas eveniet esse temporibus repellat aperiam dolores itaque quidem ut. Voluptates ullam veniam distinctio aliquam laboriosam velit obcaecati id?
-        Provident, soluta. Autem enim, aperiam minus eius ad repellendus corporis amet voluptates architecto voluptas maxime labore error ex iusto! Neque quibusdam ducimus non natus corporis ullam iusto sequi quas quidem?
-        Tenetur mollitia quos nulla saepe temporibus omnis, velit, voluptate ex veritatis modi consectetur architecto. Veritatis nihil eius a sint quasi corrupti magni corporis. At amet dignissimos harum reiciendis, accusantium ea.
-        Tempora animi deserunt quo, ipsam corporis magnam voluptates voluptatem natus error perferendis necessitatibus numquam sit? Saepe reiciendis et obcaecati maxime magni dolores earum unde perferendis suscipit? Eum necessitatibus dolores iste.
-        Amet voluptatem impedit reprehenderit beatae. Quae eligendi perferendis provident beatae laudantium maxime incidunt modi nihil officia nobis, asperiores nesciunt autem perspiciatis fuga doloribus voluptates. Recusandae, suscipit ipsa? Temporibus, dignissimos nostrum.
-        Distinctio id deleniti, laboriosam aspernatur facere quam libero eos facilis placeat necessitatibus nobis maiores blanditiis odio debitis nesciunt est non porro officiis. Deleniti veniam totam fuga cumque esse dolorum qui.
-    </p>
+    <h1 class="display-4 mb-5 mt-5">Welcome</h1>
+    <div class="container">
+
+        <div class="row border border-2 rounded-3 text-start p-3 mb-2" style="width:1191px; margin: 0 auto">
+
+            <p class="mb-1">
+                Our system is designed to help you manage patient records, appointments, and much more. With our intuitive interface and powerful features, you'll be able to easily manage all of your medical accounting needs. 
+                With our system, you'll be able to quickly and easily search for patient records, view appointments, and add new records. System is designed to be as user-friendly as possible, so you can spend more time focusing on your patients and less time on administrative tasks. 
+                We understand how important it is to keep accurate records, and that's why our system is designed with reliability and security in mind. All patient information is securely stored in our database, and only authorized users have access to it. 
+                System also includes a variety of reporting features, so you can quickly generate reports on patient visits, revenue, and more. This allows you to make informed decisions about your practice and optimize your operations for maximum efficiency.
+            </p>
+
+        </div>
+
+        <div class="row align-items-center justify-content-evenly p-3">
+
+            <div class="col-4 border border-2 rounded">
+
+                @if (Model.Employer != null)
+                {
+                    <h5 class="mt-3">@Model.Employer.FIO</h5>
+                    <hr />
+                    <dl class="row p-4 pt-0 pb-0">
+
+                        <dt class="col-5">Specialty:</dt>
+                        <dd class="col-7">@Model.Employer.Speciality</dd>
+
+                        <dt class="col-5">Department:</dt>
+                        <dd class="col-7">@Model.Employer.Department</dd>
+
+                        <dt class="col-5">Phone:</dt>
+                        <dd class="col-7">@Model.Employer.Phone</dd>
+
+                        <dt class="col-5">Email:</dt>
+                        <dd class="col-7">@Model.Employer.Email</dd>
+
+                    </dl>
+                }
+
+            </div>
+
+            <div class="col-7 border border-2 rounded p-3 text-start">
+
+                <p class="mb-2 mt-2">
+
+                    We hope this message finds you well. We understand that keeping track of your medical appointments and records can be a daunting task, but it is important for maintaining your health and wellbeing. That's why we wanted to remind you of some best practices for managing your medical information.
+                    <br />
+                    First and foremost, it is crucial to keep a record of all of your medical appointments and procedures. This can help you track your progress over time and provide important information to your healthcare providers.
+                
+                </p>
+
+            </div>
+
+        </div>
+        
+    </div>
 </div>

@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.FileProviders;
 using WebApplicationAuth.Data;
-using WebApplicationAuth.Data.DTO;
 using WebApplicationAuth.Data.Migrations;
 using WebApplicationAuth.Models;
 
@@ -17,6 +17,7 @@ namespace WebApplicationAuth.Pages
         public List<Record>? patientsRecords;
         public List<ChronicIllness>? patientsIllneses;
         private readonly ApplicationDbContext _context;
+
         public MedicalCard medicalCard;
 
         [BindProperty(SupportsGet = true)]
@@ -31,7 +32,9 @@ namespace WebApplicationAuth.Pages
         {
             medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
 
+
             medicalCard.ImagePath = medicalCard.Insurance + ".jpg";
+
 
             patientsIllneses = _context.Entry(medicalCard)
                 .Collection(p => p.Illnesses)
