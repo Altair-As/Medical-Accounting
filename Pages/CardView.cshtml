@@ -140,9 +140,9 @@
 
             <div class="col-auto p-0">
 
-                <button class="btn btn-primary m-0 mt-1" style="width:40px; height:40px; display:flex; justify-content:center; align-items:center">
+                <a asp-area="" asp-page="/AddAppointment" asp-route-id="@Model.medicalCard.Id" class="btn btn-primary m-0 mt-1" style="width:40px; height:40px; display:flex; justify-content:center; align-items:center">
                     <img src="~/icons/plus-white.svg" alt="" class="" style="height:35px" />
-                </button>
+                </a>
 
             </div>
 
@@ -337,30 +337,5 @@
         }
 
     </div>
-
-    
-
-    @*<img src="~/images/@Model.medicalCard.ImagePath" alt="" />
-    <h4>@Model.medicalCard.FIO</h4>
-    <p>@Model.medicalCard.DateOfBirth</p>
-    <p>@Model.medicalCard.Insurance</p>
-    <p>@Model.medicalCard.Passport</p>
-    <p>@Model.medicalCard.Adress</p>
-    <p>@Model.medicalCard.Height santimetrs</p>
-    <p>@Model.medicalCard.Weight kilograms</p>
-    @if (Model.patientsIllneses.Any())
-    {
-        <ul>
-            @foreach(var i in Model.patientsIllneses)
-            {
-                <li>@i.Title</li>
-            }
-        </ul>
-    }
-    else
-    {
-        <p>No chronic illneses found</p>
-    }
-    *@
 
 </div>

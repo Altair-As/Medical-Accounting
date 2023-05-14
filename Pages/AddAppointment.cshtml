@@ -1,0 +1,95 @@
+﻿@page
+@model WebApplicationAuth.Pages.AddAppointmentModel
+@{
+}
+
+<div class="text-center">
+
+    <h2 class="mb-2">Add an appoinment</h2>
+
+    <div class="fixedsize mb-3">
+
+        <div class="card">
+
+            <form method="post">
+
+                <div class="card-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group mb-2">
+
+                        <label class="control-label">Patient</label>
+                        <input class="form-control" value="@Model.card.FIO" disabled readonly />
+
+                    </div>
+
+                    <input asp-for="Record.MedicalCardId" type="hidden" value="@Model.card.Id" />
+
+                    <div class="form-group mb-2">
+
+                        <label asp-for="Record.AppointmentType" class="control-label"></label>
+                        <input asp-for="Record.AppointmentType" class="form-control" />
+                        <span asp-validation-for="Record.AppointmentType" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Record.Document" class="control-label"></label>
+                        <input asp-for="Record.Document" class="form-control" />
+                        <span asp-validation-for="Record.Document" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Record.Result" class="control-label"></label>
+                        <input asp-for="Record.Result" class="form-control" />
+                        <span asp-validation-for="Record.Result" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Record.Complaints" class="control-label"></label>
+                        <input asp-for="Record.Complaints" class="form-control" />
+                        <span asp-validation-for="Record.Complaints" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Record.Symptoms" class="control-label"></label>
+                        <input asp-for="Record.Symptoms" class="form-control" />
+                        <span asp-validation-for="Record.Symptoms" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+
+                        <label class="control-label">Employer</label>
+                        <input class="form-control" value="@Model.employer.FIO" disabled readonly />
+
+                    </div>
+
+                    <input asp-for="Record.EmployerId" type="hidden" value="@Model.employer.Id" />
+
+                    <div class="form-group mb-2">
+                        <label asp-for="Record.Diagnosis" class="control-label"></label>
+                        <input asp-for="Record.Diagnosis" class="form-control" />
+                        <span asp-validation-for="Record.Diagnosis" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <label class="control-label">Prescription</label>
+                        <input class="form-control" />
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <button type="submit" class="btn btn-primary m-2">Add an appointment</button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
