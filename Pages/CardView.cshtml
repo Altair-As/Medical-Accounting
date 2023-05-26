@@ -301,20 +301,17 @@
                                 <p class="m-1">
 
                                     Medicine list
-                                    <a class="collapselink" data-bs-toggle="collapse" href="#collapseScript" role="button" aria-expanded="false" aria-controls="collapseScript">+</a>
+                                    <a class="collapselink" data-bs-toggle="collapse" href="#collapseScript-@c.Id" role="button" aria-expanded="false" aria-controls="collapseScript-@c.Id">+</a>
 
                                 </p>
 
-                                <div class="collapse mb-0" id="collapseScript">
+                                <div class="collapse mb-0" id="collapseScript-@c.Id">
 
                                     <ul>
 
-                                        @foreach (var r in Model.patientsRecords)
+                                        @foreach (var m in c.Medications)
                                         {
-                                            @foreach (var m in r.Medications)
-                                            {
-                                                <li>@m.Name</li>
-                                            }
+                                            <li>@m.Name</li>
                                         }
 
                                     </ul>
@@ -329,7 +326,7 @@
         }
         else
         {
-            <div class="row border border-1 border-dark rounded-bottom text-center">
+            <div class="row border border-1 border-top-0 border-dark rounded-bottom text-center">
 
                 <h3 class="p-3 pb-2">There is no records</h3>
 

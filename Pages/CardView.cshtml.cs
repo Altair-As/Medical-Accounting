@@ -71,9 +71,11 @@ namespace WebApplicationAuth.Pages
             
             if (illness != null)
             {
-                ChronicIllness newIllness = _context.ChronicIllnesses.Where(c => c.Title == illness).FirstOrDefault();
+                ChronicIllness newIllness = _context.ChronicIllnesses
+                    .Where(c => c.Title == illness).FirstOrDefault();
 
-                medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
+                medicalCard = _context.MedicalCards
+                    .FirstOrDefault(c => c.Id == Id);
 
                 patientsIllneses = _context.Entry(medicalCard)
                     .Collection(p => p.Illnesses)
