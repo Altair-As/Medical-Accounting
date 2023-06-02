@@ -334,6 +334,15 @@
 
                                             <div class="modal-footer justify-content-center">
 
+                                                <form method="post" asp-page-handler="GenerateDocument">
+
+                                                    <input asp-for="Id" type="hidden" value="@Model.medicalCard.Id" />
+                                                    <input asp-for="recordId" type="hidden" value="@c.Id" />
+                                                    <button type="submit" class="btn btn-primary">Generate document</button>
+                                                
+                                                
+                                                </form>
+
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                                             </div>
