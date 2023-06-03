@@ -33,11 +33,13 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly ApplicationDbContext _context;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<ApplicationIdentityUser> userManager,
             IUserStore<ApplicationIdentityUser> userStore,
             SignInManager<ApplicationIdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
             ApplicationDbContext context)
@@ -49,6 +51,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
             _context = context;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -110,6 +113,34 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    if (!await _roleManager.RoleExistsAsync("Admin"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                    }
+
+                    if (!await _roleManager.RoleExistsAsync("Doctor"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Doctor"));
+                    }
+
+                    if (!await _roleManager.RoleExistsAsync("Accountant"))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole("Accountant"));
+                    }
+
+                    if (employer.Speciality == "Director")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else if (employer.Speciality == "Accountant")
+                    {
+                        await _userManager.AddToRoleAsync(user, "Accountant");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Doctor");
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
