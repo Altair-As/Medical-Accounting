@@ -49,7 +49,11 @@
         <h4 class="mb-3">Authenticator app</h4>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-50">Add authenticator app</a>
+            <div class="row justify-content-center">
+
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary w-50">Add authenticator app</a>
+
+            </div>
         }
         else
         {

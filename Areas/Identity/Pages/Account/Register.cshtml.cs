@@ -24,6 +24,7 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = "Admin, Accountant")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;

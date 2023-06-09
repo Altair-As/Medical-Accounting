@@ -11,6 +11,7 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Pages.Administration
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
