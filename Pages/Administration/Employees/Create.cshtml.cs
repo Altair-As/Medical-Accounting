@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
 {
     public class CreateModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public CreateModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -19,6 +22,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
             _context = context;
         }
 
+        // Обработка загрузки страницы
         public IActionResult OnGet()
         {
             return Page();
@@ -26,9 +30,8 @@ namespace WebApplicationAuth.Pages.Administration.Employees
 
         [BindProperty]
         public Employer Employer { get; set; } = default!;
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // Обработка создания записи
         public async Task<IActionResult> OnPostAsync()
         {
           if (!ModelState.IsValid || _context.Employers == null || Employer == null)

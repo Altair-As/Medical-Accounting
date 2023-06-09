@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿// Подключение модулей
+#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        // Внедрение завичимостей
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
@@ -27,6 +29,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+        // Объявление параметров
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -37,6 +40,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
         [TempData]
         public string ErrorMessage { get; set; }
 
+        // Объявление модеи ввода данных
         public class InputModel
         {
             
@@ -52,6 +56,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
+        // Обработка загрузки страницы
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -68,6 +73,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        // Обработка авторизации
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");

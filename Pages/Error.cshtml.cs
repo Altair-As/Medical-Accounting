@@ -1,3 +1,5 @@
+// Подключение модулей
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
@@ -19,6 +21,7 @@ namespace WebApplicationAuth.Pages
             _logger = logger;
         }
 
+        // Обработка загрузки страницы
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;

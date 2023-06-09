@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace WebApplicationAuth.Models
 {
+    // Объявление модели сотрудника
     public class Employer
     {
         public int Id { get; set; }

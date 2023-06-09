@@ -1,3 +1,5 @@
+// Подключение модулей
+
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +21,7 @@ namespace WebApplicationAuth.Pages
     [Authorize]
     public class CardViewModel : PageModel
     {
+        // Внедрение зависимостей
         public int age;
         public List<Record>? patientsRecords;
         public List<ChronicIllness>? patientsIllneses;
@@ -43,6 +46,7 @@ namespace WebApplicationAuth.Pages
             _signInManager = signInManager;
         }
 
+        // Обработка загрузки страницы
         public void OnGet()
         {
             medicalCard = _context.MedicalCards.FirstOrDefault(c => c.Id == Id);
@@ -81,6 +85,7 @@ namespace WebApplicationAuth.Pages
             }
         }
 
+        // Обработка добавления заболевания
         public IActionResult OnPostAddIllness(string illness)
         {
             
@@ -108,7 +113,7 @@ namespace WebApplicationAuth.Pages
             return Page();
         }
 
-
+        // Обработка генерации документа
         public IActionResult OnPostGenerateDocument()
         {
 
@@ -205,6 +210,7 @@ namespace WebApplicationAuth.Pages
             return PhysicalFile(generatedDocumentPath, "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "generated_document.docx");
         }
 
+        // Обработка документа
         private static void ReplaceText(MainDocumentPart mainPart, string placeholder, string replacement)
         {
             foreach (var text in mainPart.Document.Descendants<Text>())

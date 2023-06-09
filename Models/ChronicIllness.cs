@@ -2,6 +2,7 @@
 
 namespace WebApplicationAuth.Models
 {
+    // Объявление модели заболевания
     public class ChronicIllness
     {
         public int Id { get; set; }

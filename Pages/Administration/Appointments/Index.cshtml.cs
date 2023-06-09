@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +13,11 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Pages.Administration.Appointments
 {
+    // Настройка доступа
     [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public IndexModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -23,6 +27,7 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
 
         public IList<Record> Record { get;set; } = default!;
 
+        // Обработка загрузки страницы
         public async Task OnGetAsync()
         {
             if (_context.Records != null)

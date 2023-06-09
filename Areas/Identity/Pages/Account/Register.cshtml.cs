@@ -1,4 +1,5 @@
-﻿#nullable disable
+﻿// Подключение модулей
+#nullable disable
 
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,11 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Areas.Identity.Pages.Account
 {
+    // Настройка доступа
     [Authorize(Roles = "Admin, Accountant")]
     public class RegisterModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly IUserStore<ApplicationIdentityUser> _userStore;
@@ -55,6 +58,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             _roleManager = roleManager;
         }
 
+        // Объявление параметров
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -62,6 +66,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
+        // Объявление модели ввода данных
         public class InputModel
         {
             [Required]
@@ -81,13 +86,14 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
+        // Обработка загрузки страницы
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
+        // Обработка регистрации
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -172,10 +178,10 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 
+        // Создание пользователя
         private ApplicationIdentityUser CreateUser()
         {
             try
@@ -190,6 +196,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             }
         }
 
+        // Проверка электронный почты
         private IUserEmailStore<ApplicationIdentityUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)

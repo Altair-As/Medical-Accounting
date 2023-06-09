@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Подключение модулей
 #nullable disable
 
 using System;
@@ -15,6 +14,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
@@ -24,6 +24,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+        // Обработка загрузки страницы
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
             await _signInManager.SignOutAsync();
@@ -34,8 +35,6 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account
             }
             else
             {
-                // This needs to be a redirect so that the browser performs a new
-                // request and the identity for the user gets updated.
                 return RedirectToPage();
             }
         }

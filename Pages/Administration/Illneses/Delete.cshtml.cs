@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Administration
 {
     public class DeleteModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public DeleteModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -20,8 +23,9 @@ namespace WebApplicationAuth.Pages.Administration
         }
 
         [BindProperty]
-      public ChronicIllness ChronicIllness { get; set; } = default!;
+        public ChronicIllness ChronicIllness { get; set; } = default!;
 
+        // Обработка загрузки страницы
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.ChronicIllnesses == null)
@@ -42,6 +46,7 @@ namespace WebApplicationAuth.Pages.Administration
             return Page();
         }
 
+        // Обработка удаления записи
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null || _context.ChronicIllnesses == null)

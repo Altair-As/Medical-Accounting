@@ -1,3 +1,5 @@
+// Подключение модулей
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -10,7 +12,7 @@ namespace WebApplicationAuth.Pages
     [Authorize]
     public class MedicalCardsModel : PageModel
     {
-
+        // Внедрение зависимостей
         private readonly ApplicationDbContext _context;
         public List<MedicalCard> cards;
 
@@ -22,6 +24,7 @@ namespace WebApplicationAuth.Pages
             _context = context;
         }
 
+        // Обработка поиска записей
         public IActionResult OnPost()
         {
             string searchText = SearchText;
@@ -36,6 +39,7 @@ namespace WebApplicationAuth.Pages
             return Page();
         }
 
+        // Обработка загрузки страницы
         public void OnGet()
         {
             cards = _context.MedicalCards.ToList();

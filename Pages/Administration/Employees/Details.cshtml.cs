@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
 {
     public class DetailsModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public DetailsModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -19,8 +22,9 @@ namespace WebApplicationAuth.Pages.Administration.Employees
             _context = context;
         }
 
-      public Employer Employer { get; set; } = default!; 
+        public Employer Employer { get; set; } = default!;
 
+        // Обработка загрузки страницы
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Employers == null)

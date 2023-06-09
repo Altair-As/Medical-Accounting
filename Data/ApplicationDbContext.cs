@@ -6,6 +6,7 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Data
 {
+    // Объявление класса базы данных
     public class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

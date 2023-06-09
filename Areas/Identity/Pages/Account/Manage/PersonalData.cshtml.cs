@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Подключние модулей
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +11,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly ILogger<PersonalDataModel> _logger;
 
@@ -23,6 +23,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        // Обработка получения данных
         public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);

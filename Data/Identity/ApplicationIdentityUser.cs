@@ -3,6 +3,7 @@ using WebApplicationAuth.Models;
 
 namespace WebApplicationAuth.Data.Identity
 {
+    // Объявление класса пользователя
     public class ApplicationIdentityUser : IdentityUser
     {
         public string EmployerName { get; set; } = String.Empty;

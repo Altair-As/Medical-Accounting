@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Administration.Patients
 {
     public class CreateModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public CreateModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -19,6 +22,7 @@ namespace WebApplicationAuth.Pages.Administration.Patients
             _context = context;
         }
 
+        // Обработка загрузки страницы
         public IActionResult OnGet()
         {
             return Page();
@@ -26,8 +30,9 @@ namespace WebApplicationAuth.Pages.Administration.Patients
 
         [BindProperty]
         public MedicalCard MedicalCard { get; set; }
-        
 
+
+        // Обработка создания записи
         public async Task<IActionResult> OnPostAsync()
         {
 

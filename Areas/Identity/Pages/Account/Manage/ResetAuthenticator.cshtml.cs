@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Подключение модулей
 #nullable disable
 
 using System;
@@ -14,6 +13,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly ILogger<ResetAuthenticatorModel> _logger;
@@ -28,13 +28,11 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        // Объявление параметров
         [TempData]
         public string StatusMessage { get; set; }
 
+        // Обработка получения данных
         public async Task<IActionResult> OnGet()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -46,6 +44,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
+        // Обработка восстановления двухфакторной аутентификации
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);

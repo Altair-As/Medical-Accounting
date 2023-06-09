@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Medications
 {
     public class CreateModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public CreateModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -19,6 +22,7 @@ namespace WebApplicationAuth.Pages.Medications
             _context = context;
         }
 
+        // Обработка загрузки страницы
         public IActionResult OnGet()
         {
             return Page();
@@ -26,9 +30,8 @@ namespace WebApplicationAuth.Pages.Medications
 
         [BindProperty]
         public Medicine Medicine { get; set; } = default!;
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // Обработка создания записи
         public async Task<IActionResult> OnPostAsync()
         {
           if (!ModelState.IsValid || _context.Medicine == null || Medicine == null)

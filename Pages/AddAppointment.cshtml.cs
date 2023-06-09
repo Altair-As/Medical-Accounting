@@ -1,3 +1,5 @@
+// Подключение модулей
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,7 +15,7 @@ namespace WebApplicationAuth.Pages
 {
     public class AddAppointmentModel : PageModel
     {
-
+        // Внедрение зависимостей
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
 
@@ -30,12 +32,14 @@ namespace WebApplicationAuth.Pages
             _signInManager = signInManager;
         }
 
+        // Обработка загрузки страницы
         public void OnGet(int Id)
         {
             card = _context.MedicalCards.Where(p => p.Id == Id).FirstOrDefault();
             employer = _context.Employers.Where(e => e.Email == User.Identity.Name).FirstOrDefault();
         }
 
+        // Обработка добавления записи
         public async Task<IActionResult> OnPostAsync(string Prescription) 
         {
             if (!ModelState.IsValid || _context.Records == null || Record == null)

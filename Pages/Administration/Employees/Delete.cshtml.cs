@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
 {
     public class DeleteModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public DeleteModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -22,6 +25,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
         [BindProperty]
       public Employer Employer { get; set; } = default!;
 
+        // Обработка загрузки страницы
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Employers == null)
@@ -42,6 +46,7 @@ namespace WebApplicationAuth.Pages.Administration.Employees
             return Page();
         }
 
+        // Обработка удаления записи
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null || _context.Employers == null)

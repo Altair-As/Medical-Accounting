@@ -5,6 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace WebApplicationAuth.Models
 {
+    // Объявление модели посещения врача
     public class Record
     {
         public int Id { get; set; }

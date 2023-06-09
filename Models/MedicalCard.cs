@@ -5,6 +5,7 @@ using RequiredAttribute = System.ComponentModel.DataAnnotations.RequiredAttribut
 
 namespace WebApplicationAuth.Models
 {
+    // Объявление модели пациента
     public class MedicalCard
     {
         public int Id { get; set; }

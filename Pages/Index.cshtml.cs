@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿// Подключение модулей
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,7 +13,7 @@ namespace WebApplicationAuth.Pages
     [Authorize]
     public class IndexModel : PageModel
     {
-
+        // Внедрение зависимостей
         public Employer? Employer { get; set; }
 
         private readonly ILogger<IndexModel> _logger;
@@ -28,6 +30,7 @@ namespace WebApplicationAuth.Pages
             _context = context;
         }
 
+        // Обработка загрузки страницы
         public void OnGet()
         {
             if (User.Identity != null)

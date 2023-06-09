@@ -1,5 +1,6 @@
 ﻿namespace WebApplicationAuth.Models
 {
+    // Объявление модели лекарства
     public class Medicine
     {
         public int Id { get; set; }

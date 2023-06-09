@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Подключение модулей
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
 {
     public class EditModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly WebApplicationAuth.Data.ApplicationDbContext _context;
 
         public EditModel(WebApplicationAuth.Data.ApplicationDbContext context)
@@ -23,6 +26,7 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
         [BindProperty]
         public Record Record { get; set; } = default!;
 
+        // Обработка загрузки страницы
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Records == null)
@@ -42,8 +46,7 @@ namespace WebApplicationAuth.Pages.Administration.Appointments
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
+        // Обработка изменения записи
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

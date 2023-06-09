@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Подключение модулей
 #nullable disable
 
 using System;
@@ -18,6 +17,7 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
     {
+        // Внедрение зависимостей
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
 
@@ -29,11 +29,13 @@ namespace WebApplicationAuth.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        // Обработка загрузки страницы
         public IActionResult OnGet()
         {
             return NotFound();
         }
 
+        // Обработка скачивания персональных данных
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
